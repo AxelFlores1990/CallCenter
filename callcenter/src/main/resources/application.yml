@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: callcenter
+      
+  datasource:
+    url: jdbc:hsqldb:mem:/bd
+
+  jpa:
+    hibernate:
+      dll-auto: none
+      show-sql: true
+      
+  liquibase:
+    change-log: classpath:db/changelog-master.json
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    client-id: callcenter
+    template:
+      default-topic: calls.t
+    producer:
+      client-id: callcenter
+      retries: 5
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    properties:
+      max:
+        block:
+          ms: 10000
+      request:
+        timeout:
+          ms: 20000
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+              
+server:
+  port: 8080
+  undertow:
+    io-threads: 10

@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: callretainer
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    client-id: callretainer
+    listener:
+      ack-mode: 'MANUAL_IMMEDIATE'
+      concurrency: 1
+    consumer:
+      client-id: callretainer
+      group-id: call
+      enable-auto-commit: false
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: com.almundo.callretainer.kafka.fixer.JsonDeserializerClassFixer
+          
+url:
+  callcenter:
+    empleados: http://localhost:8080/empleado/count
+    call: http://localhost:8080/call
+          
+kafka:
+  default-topic: calls.t
+          
+server:
+  port: 8081

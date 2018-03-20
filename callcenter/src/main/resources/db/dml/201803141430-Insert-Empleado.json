@@ -1,0 +1,196 @@
+{"databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "1",
+        "author": "Axel Flores",
+        "comment": "Empleados iniciales para CallCenter",
+        "preConditions": [{
+            "onFail":"MARK_RAN",
+            "onFailMessage":"Alguno de los empleados ya existe.",
+            "sqlCheck": {
+                    "expectedResult": "0",
+                    "sql": "select count(id) from Empleado;"
+            }
+        }],
+        "changes": [
+          {
+            "insert": {
+              "tableName": "Empleado",
+              "columns": [
+                {"column": {"name": "id", "value": "1"}},
+                {"column": {"name": "cargo", "value": "Director"}},
+                {"column": {"name": "nombre", "value": "Director"}},
+                {"column": {"name": "apellido", "value": "Primero"}}
+              ]
+            }
+          },
+            {
+            "insert": {
+              "tableName": "Empleado",
+              "columns": [
+                {"column": {"name": "id", "value": "2"}},
+                {"column": {"name": "cargo", "value": "Supervisor"}},
+                {"column": {"name": "nombre", "value": "Supervisor"}},
+                {"column": {"name": "apellido", "value": "Primero"}}
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "Empleado",
+              "columns": [
+                {"column": {"name": "id", "value": "3"}},
+                {"column": {"name": "cargo", "value": "Supervisor"}},
+                {"column": {"name": "nombre", "value": "Supervisor"}},
+                {"column": {"name": "apellido", "value": "Segundo"}}
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "Empleado",
+              "columns": [
+                {"column": {"name": "id", "value": "4"}},
+                {"column": {"name": "cargo", "value": "Supervisor"}},
+                {"column": {"name": "nombre", "value": "Supervisor"}},
+                {"column": {"name": "apellido", "value": "Tercero"}}
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "Empleado",
+              "columns": [
+                {"column": {"name": "id", "value": "5"}},
+                {"column": {"name": "cargo", "value": "Supervisor"}},
+                {"column": {"name": "nombre", "value": "Supervisor"}},
+                {"column": {"name": "apellido", "value": "Cuarto"}}
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "Empleado",
+              "columns": [
+                {"column": {"name": "id", "value": "6"}},
+                {"column": {"name": "cargo", "value": "Supervisor"}},
+                {"column": {"name": "nombre", "value": "Supervisor"}},
+                {"column": {"name": "apellido", "value": "Quinto"}}
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "Empleado",
+              "columns": [
+                {"column": {"name": "id", "value": "7"}},
+                {"column": {"name": "cargo", "value": "Operador"}},
+                {"column": {"name": "nombre", "value": "Operador"}},
+                {"column": {"name": "apellido", "value": "Primero"}}
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "Empleado",
+              "columns": [
+                {"column": {"name": "id", "value": "8"}},
+                {"column": {"name": "cargo", "value": "Operador"}},
+                {"column": {"name": "nombre", "value": "Operador"}},
+                {"column": {"name": "apellido", "value": "Segundo"}}
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "Empleado",
+              "columns": [
+                {"column": {"name": "id", "value": "9"}},
+                {"column": {"name": "cargo", "value": "Operador"}},
+                {"column": {"name": "nombre", "value": "Operador"}},
+                {"column": {"name": "apellido", "value": "Tercero"}}
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "Empleado",
+              "columns": [
+                {"column": {"name": "id", "value": "10"}},
+                {"column": {"name": "cargo", "value": "Operador"}},
+                {"column": {"name": "nombre", "value": "Operador"}},
+                {"column": {"name": "apellido", "value": "Cuarto"}}
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "Empleado",
+              "columns": [
+                {"column": {"name": "id", "value": "11"}},
+                {"column": {"name": "cargo", "value": "Operador"}},
+                {"column": {"name": "nombre", "value": "Operador"}},
+                {"column": {"name": "apellido", "value": "Quinto"}}
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "Empleado",
+              "columns": [
+                {"column": {"name": "id", "value": "12"}},
+                {"column": {"name": "cargo", "value": "Operador"}},
+                {"column": {"name": "nombre", "value": "Operador"}},
+                {"column": {"name": "apellido", "value": "Sexto"}}
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "Empleado",
+              "columns": [
+                {"column": {"name": "id", "value": "13"}},
+                {"column": {"name": "cargo", "value": "Operador"}},
+                {"column": {"name": "nombre", "value": "Operador"}},
+                {"column": {"name": "apellido", "value": "Septimo"}}
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "Empleado",
+              "columns": [
+                {"column": {"name": "id", "value": "14"}},
+                {"column": {"name": "cargo", "value": "Operador"}},
+                {"column": {"name": "nombre", "value": "Operador"}},
+                {"column": {"name": "apellido", "value": "Octavo"}}
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "Empleado",
+              "columns": [
+                {"column": {"name": "id", "value": "15"}},
+                {"column": {"name": "cargo", "value": "Operador"}},
+                {"column": {"name": "nombre", "value": "Operador"}},
+                {"column": {"name": "apellido", "value": "Noveno"}}
+              ]
+            }
+          },
+          {
+            "insert": {
+              "tableName": "Empleado",
+              "columns": [
+                {"column": {"name": "id", "value": "16"}},
+                {"column": {"name": "cargo", "value": "Operador"}},
+                {"column": {"name": "nombre", "value": "Operador"}},
+                {"column": {"name": "apellido", "value": "Decimo"}}
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
