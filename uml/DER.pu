@@ -1,0 +1,13 @@
+@startuml
+
+Empleado <|-- Operador
+Empleado <|-- Director
+Empleado <|-- Supervisor
+
+Empleado : -id
+Empleado : -nombre
+Empleado : -apellido
+Empleado : -occupied
+Empleado : +isntOccupied()
+
+@enduml

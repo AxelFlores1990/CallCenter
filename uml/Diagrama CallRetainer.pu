@@ -1,0 +1,48 @@
+@startuml
+
+participant Kafka
+box "Internal Service" #LightBlue
+    participant CallConsumer
+    participant CallService
+    participant CallCenter
+end box
+
+CallConsumer --> Kafka: topic listener
+Kafka --> CallConsumer: call consume
+
+activate CallConsumer
+
+CallConsumer -> CallService:processRetainedCall
+deactivate CallConsumer
+activate CallService
+
+CallService -> CallService:existDisoccupied
+activate CallService
+CallService -> CallCenter: empleado/count
+CallCenter --> CallService
+deactivate CallService
+
+alt Empleado Disponible
+
+    CallService -> CallService:sendCallToCenter
+    activate CallService
+    CallService -> CallCenter: call
+    deactivate CallService
+    
+    CallService -> CallConsumer
+    activate CallConsumer
+    CallConsumer -> Kafka: Commit offset
+    deactivate CallConsumer
+    
+else Empleado No Disponible
+
+    CallService -> CallConsumer
+    deactivate CallService
+    deactivate CallService
+    activate CallConsumer
+    CallConsumer ->x Kafka: not Commit offset
+    deactivate CallConsumer
+    
+end
+
+@enduml

@@ -1,0 +1,63 @@
+@startuml
+
+actor caller
+box "Internal Service" #LightBlue
+    participant CallController
+    participant CallService
+    participant CallChainResp
+    participant OperadorService
+    participant SupervisorService
+    participant DirectorService
+end box
+participant Kafka
+
+caller -> CallController: dispatchcall
+activate CallController
+
+CallController -> CallService: proccessCall
+deactivate CallController
+activate CallService
+
+CallService -> CallChainResp: responsibilityDelegatorBuilder
+activate CallChainResp
+
+CallChainResp --> CallService
+deactivate CallChainResp
+
+CallService -> CallChainResp: handle
+deactivate CallService
+activate CallChainResp
+
+alt Operador Disponible
+
+    CallChainResp -> OperadorService: isntOcuppied/processCall
+    activate OperadorService
+    OperadorService --> CallChainResp
+    deactivate OperadorService
+    CallChainResp --> caller
+    
+else Supervisor Disponible
+
+    CallChainResp -> SupervisorService: isntOcuppied/processCall
+    activate SupervisorService
+    SupervisorService --> CallChainResp
+    deactivate SupervisorService
+    CallChainResp --> caller
+    
+else Director Disponible
+
+    CallChainResp -> DirectorService: isntOcuppied/processCall
+    activate DirectorService
+    DirectorService --> CallChainResp
+    deactivate DirectorService
+    CallChainResp --> caller
+    
+else 
+
+    CallChainResp -> Kafka: Go To Topic
+    CallChainResp --> caller
+    deactivate CallChainResp
+
+end
+
+@enduml

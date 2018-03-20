@@ -1,0 +1,45 @@
+@startuml
+
+actor caller
+participant callcenter
+participant Kafka
+participant callretainer
+
+callretainer --> Kafka: topic listener
+Kafka --> callretainer: call consume
+
+activate callretainer
+
+callretainer -> callretainer:processRetainedCall
+activate callretainer
+
+callretainer -> callcenter: existDisoccupied
+callcenter -> callretainer
+
+alt Empleado Disponible
+
+    callretainer -> callcenter: sendCallToCenter
+    deactivate callretainer
+end
+
+deactivate callretainer
+
+caller -> callcenter: dispatchcall
+activate callcenter
+
+alt Empleado Disponible
+
+    caller -> callcenter: process call
+    activate callcenter
+
+    callcenter -> caller
+    deactivate callcenter
+
+else Empleados Ocupados
+
+    callcenter -> Kafka: produce
+    deactivate callcenter
+    
+end
+
+@enduml
